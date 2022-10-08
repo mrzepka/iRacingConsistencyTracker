@@ -3,6 +3,8 @@ An ongoing project where I try to make it easier to grab consistency information
 
 HOW TO USE IT:
 
+You will need to install https://github.com/jasondilworth56/iracingdataapi for this to work, but that can be done via pip.
+
 Line 11 - Add your iRacing email and your iRacing password
 
 Update _cust_id to the iRacing customer ID you want to grab data for
