@@ -5,10 +5,10 @@
 # search_series endpoint working
 import sys, statistics, csv
 sys.path.insert(0,"iracingdataapi\src\iracingdataapi")
-from client import irDataClient
+from irapi import irDataClient
 
 #create data client that does all the work
-idc = irDataClient(username="<your iracing email>", password="<your iracing password>")
+idc = irDataClient(username="<Your iRacing email>", password="<your iracing password>")
 
 #Private Variables! :D
 #I'm sure there's a better way to do this
@@ -32,13 +32,11 @@ _years = [2008,
 #also this
 _seasons = [1, 2, 3, 4]
 
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #please update this to whatever customer ID you want to get data for
-_cust_id = <customer ID to look up>
+_cust_id = <Customer ID to look up>
 
-#!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #please update this to whatever subsession ID you want to get data for
-_subsession_id = <subsession ID to look up>
+_subsession_id = <Subsession ID to look up>
 
 #more for reference than use
 _event_types = [{'label': 'Practice', 'value': 2}, 
