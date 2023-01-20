@@ -20,12 +20,7 @@ _cust_id = None
 #please update this to whatever subsession ID you want to get data for
 _subsession_id = None
 
-try:
-    arguments, values = getopt.getopt(argumentList, options, long_options)
-
-    for currArg, currVal in arguments:
-        if currArg in ('-h', '--help'):
-            helpText = """
+helpText = """
             Use this script with a customer Id, subsession Id, or both.
             Parameters:
             Customer ID   -> -c or --cust_id
@@ -39,6 +34,16 @@ try:
             If you use both a customer ID, and subsession ID, it will only include data for that driver 
                 in that subsession
             """
+
+try:
+    arguments, values = getopt.getopt(argumentList, options, long_options)
+
+    if arguments == []:
+        print(helpText)
+        exit(0)
+
+    for currArg, currVal in arguments:
+        if currArg in ('-h', '--help'):
             print(helpText)
             exit(0)
         elif currArg in ('-c', '--cust_id'):
@@ -48,7 +53,8 @@ try:
             # print('subsession ID: ' + currVal)
             _subsession_id = currVal
         else:
-            print('Please make sure you include a customer ID or a subsession ID at least')
+            print(helpText)
+            exit(0)
 
 except getopt.error as err:
     print(str(err))
