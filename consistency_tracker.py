@@ -1,10 +1,58 @@
 # This is the API wrapper I leaned on, but I had to add some functionality
 #https://github.com/jasondilworth56/iracingdataapi
-import sys, statistics, csv
+import getopt, sys, statistics, csv
 from iracingdataapi.client import irDataClient
 
 #create data client that does all the work
-idc = irDataClient(username="<your iracing email>", password="<your iracing password>")
+idc = irDataClient(username="<your iracing email here>", password="<your iracing password here>")
+
+#get command line stuff
+argumentList = sys.argv[1:]
+
+#short options:
+options = "hc:s:"
+
+long_options = ['help', 'cust_id=', 'subsession_id=']
+
+#please update this to whatever customer ID you want to get data for
+_cust_id = None
+
+#please update this to whatever subsession ID you want to get data for
+_subsession_id = None
+
+try:
+    arguments, values = getopt.getopt(argumentList, options, long_options)
+
+    for currArg, currVal in arguments:
+        if currArg in ('-h', '--help'):
+            helpText = """
+            Use this script with a customer Id, subsession Id, or both.
+            Parameters:
+            Customer ID   -> -c or --cust_id
+            Subsession ID -> -s or --subsession_id
+
+            Example:
+            python consistency_tracker.py -c 573444 -s 59067779
+
+            If you only use a customer ID, it will create a csv of _all_ solo events for that customer
+            If you only use a subsession ID, it will create a csv of _all_ drivers in that subsession
+            If you use both a customer ID, and subsession ID, it will only include data for that driver 
+                in that subsession
+            """
+            print(helpText)
+            exit(0)
+        elif currArg in ('-c', '--cust_id'):
+            # print('customer ID: ' + currVal)
+            _cust_id = currVal
+        elif currArg in ('-s', '--subsession_id'):
+            # print('subsession ID: ' + currVal)
+            _subsession_id = currVal
+        else:
+            print('Please make sure you include a customer ID or a subsession ID at least')
+
+except getopt.error as err:
+    print(str(err))
+
 
 #Private Variables! :D
 #I'm sure there's a better way to do this
@@ -28,11 +76,6 @@ _years = [2008,
 #also this
 _seasons = [1, 2, 3, 4]
 
-#please update this to whatever customer ID you want to get data for
-_cust_id = None
-
-#please update this to whatever subsession ID you want to get data for
-_subsession_id = None
 
 #more for reference than use
 _event_types = [{'label': 'Practice', 'value': 2}, 
