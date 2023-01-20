@@ -10,8 +10,11 @@ Line 11 - Add your iRacing email and your iRacing password
 
 Use this script with a customer Id, subsession Id, or both.
 Parameters:
+
 Help          -> -h or --help
+
 Customer ID   -> -c or --cust_id
+
 Subsession ID -> -s or --subsession_id
 
 EXAMPLE:
