@@ -736,12 +736,11 @@ Return Values:
     None
 """
 def write_to_file(filename, rows):
-    with open(filename, 'w', newline='') as csvfile:
+    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
         filewriter = csv.writer(csvfile,
                                 delimiter=',',
                                 quotechar='|',
-                                quoting=csv.QUOTE_MINIMAL,
-                                encoding='utf-8')
+                                quoting=csv.QUOTE_MINIMAL)
         for row in rows:
             filewriter.writerow(row)
 
