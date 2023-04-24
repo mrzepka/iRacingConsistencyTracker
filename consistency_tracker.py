@@ -568,7 +568,7 @@ def get_average_laptime_of_laps(laps):
             positive_laps.append(lap)
     if len(positive_laps) > 1:
         average_laptime = statistics.mean(positive_laps)
-    average_laptime
+    return average_laptime
 
 """
 Calculates the fastest laptime of a list of laptimes
